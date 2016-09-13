@@ -14,15 +14,14 @@ var cardsInPlay = [];
 // append to board
 function createBoard() {
   for (var i=0; i < cards.length; i++) {
-    var card = document.createElement('div')
-    card.className = "card";
-    card.setAttribute('data-card', cards[i]);
+    var cardElement = document.createElement('div')
+    cardElement.className = "card";
+    cardElement.setAttribute('data-card', cards[i]);
 
-    board.appendChild(card);
+    board.appendChild(cardElement);
+
+    cardElement.addEventListener("click", isTwoCards);
   }
-
-  var cardElement = document.querySelector("card");
-  cardElement.addEventListener('click', isTwoCards);
 }
 
 function isMatch() {
@@ -40,7 +39,7 @@ function isMatch() {
 function isTwoCards() {
   // add card to array of cards in play
   cardsInPlay.push(this.getAttribute('data-card'));
-  
+
   if (this.getAttribute == "queen") {
     this.innerHTML = "<img src='queen.png' height='200px' width='150px'>";
   }
