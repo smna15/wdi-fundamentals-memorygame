@@ -17,10 +17,10 @@ function createBoard() {
     var cardElement = document.createElement('div')
     cardElement.className = "card";
     cardElement.setAttribute('data-card', cards[i]);
+    cardElement.addEventListener("click", isTwoCards);
 
     board.appendChild(cardElement);
-
-    cardElement.addEventListener("click", isTwoCards);
+    board.appendChild(cardElement);
   }
 }
 
@@ -34,16 +34,21 @@ function isMatch() {
   } else {
     alert("Sorry, try again");
   }
+
+  var element = document.querySelectorAll(".card");
+  for (var i=0; i < element.length; i++) {
+    element[i].innerHTML = "";
+  }
 }
 
 function isTwoCards() {
   // add card to array of cards in play
   cardsInPlay.push(this.getAttribute('data-card'));
 
-  if (this.getAttribute == "queen") {
+  if (this.getAttribute('data-card') == "queen") {
     this.innerHTML = "<img src='queen.png' height='200px' width='150px'>";
   }
-  if (this.getAttribute == "king") {
+  if (this.getAttribute('data-card') == "king") {
     this.innerHTML = "<img src='king.png' height='200px' width='150px'>";
   }
 
